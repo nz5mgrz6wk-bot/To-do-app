@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>待办事项</title>
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: #f3f3f3;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="todo-app">
+      <div class="todo-header">
+        <h2>📋 待办事项</h2>
+        <div class="subtitle">高效管理你的每一天</div>
+        <div class="header-stats">
+          <span class="stat-pill" id="stat-total">总计: 0</span>
+          <span class="stat-pill" id="stat-done">已完成: 0</span>
+          <span class="stat-pill" id="stat-pending">待办: 0</span>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-row">
+          <input type="text" class="todo-input" id="todo-input" placeholder="添加新任务..." maxlength="100">
+          <select class="priority-select" id="priority-select">
+            <option value="high">🔴 高优先级</option>
+            <option value="medium" selected>🟡 中优先级</option>
+            <option value="low">🟢 低优先级</option>
+          </select>
+          <button class="btn-add" id="btn-add" onclick="window.addTodo()">添加</button>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all" onclick="window.setFilter('all')">全部</button>
+        <button class="filter-tab" data-filter="active" onclick="window.setFilter('active')">待办</button>
+        <button class="filter-tab" data-filter="completed" onclick="window.setFilter('completed')">已完成</button>
+      </div>
+
+      <div class="todo-list" id="todo-list">
+        <div class="empty-state">
+          <div class="icon">📝</div>
+          <p>还没有任务，添加一个吧！</p>
+        </div>
+      </div>
+
+      <div class="footer-bar">
+        <span id="footer-info">0 个任务</span>
+        <button class="btn-clear" onclick="window.clearCompleted()">清除已完成</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
